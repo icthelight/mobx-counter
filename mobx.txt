@@ -1,0 +1,41 @@
+1. 패키지 설치하기
+(mobx 적용이 가능하도록 개발 환경 관련 패키지 설치)
+npm i --save -d customize-cra react-app-rewired  @babel/plugin-proposal-decorators @babel/plugin-proposal-class-properties core-decorators
+
+2. package.json 의 scripts 수정하기
+"scripts": {
+	"start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject",
+}
+
+3. config-overrides.js 파일 추가하기
+const {
+  addDecoratorsLegacy,
+  disableEsLint
+  override,
+} = require("customize-cra");
+
+module.exports = {
+  webpack: override(
+      disableEsLint(),
+      addDecoratorsLegacy()
+  ),
+};
+
+4. jsconfig.json 파일 추가하기
+{
+  "compilerOptions": {
+    ...
+    "experimentalDecorators": true
+    ...
+  },
+  ...
+}
+
+5. mobx 설치하기
+npm i --save mobx --save mobx-react
+
+**mobx
+
